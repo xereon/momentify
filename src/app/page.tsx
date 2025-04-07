@@ -88,7 +88,7 @@ export default async function Home() {
               </div>
               <h3 className="text-xl font-semibold mb-2">Collaborate</h3>
               <p className="text-muted-foreground">
-                Add to others' moments and create collaborative stories. React with different emotions to influence how stories evolve.
+                Add to others&apos; moments and create collaborative stories. React with different emotions to influence how stories evolve.
               </p>
             </div>
           </div>
