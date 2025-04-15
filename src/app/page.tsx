@@ -3,15 +3,15 @@ import { redirect } from 'next/navigation';
 
 export default async function Home() {
   // Check if Supabase environment variables are set
-  const hasSupabaseCredentials = 
-    process.env.NEXT_PUBLIC_SUPABASE_URL && 
+  const hasSupabaseCredentials =
+    process.env.NEXT_PUBLIC_SUPABASE_URL &&
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
   // Only try to use Supabase if credentials are available
   if (hasSupabaseCredentials) {
     try {
       const { createClient } = await import('@/lib/supabase/server');
-      const supabase = createClient();
+      const supabase = await createClient();
       const { data: { session } } = await supabase.auth.getSession();
 
       // If user is logged in, redirect to feed
@@ -36,14 +36,14 @@ export default async function Home() {
             Share and discover moments around you. Create collaborative stories with people nearby.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link 
-              href="/auth/signup" 
+            <Link
+              href="/auth/signup"
               className="bg-primary text-primary-foreground px-6 py-3 rounded-full font-medium hover:bg-primary/90 transition-colors"
             >
               Get Started
             </Link>
-            <Link 
-              href="/auth/login" 
+            <Link
+              href="/auth/login"
               className="bg-secondary text-secondary-foreground px-6 py-3 rounded-full font-medium hover:bg-secondary/90 transition-colors"
             >
               Sign In
